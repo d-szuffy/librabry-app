@@ -1,0 +1,43 @@
+{% extends 'main/base.html' %}
+{% block title %}List{% endblock %}
+
+{% block content %}
+<h2>List of books in the database</h2>
+
+<div>
+  <form class="form-group search-filters-div" method="get">
+    {{myFilter.form}}
+
+    <button class="btn btn-primary btn-my-custom" type="submit">Search</button>
+  </form>
+</div>
+
+<table class="table table-hover">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Publication Date</th>
+      <th scope="col">ISBN number</th>
+      <th scope="col">Number of Pages</th>
+      <th scope="col">Title Page</th>
+      <th scope="col">Language</th>
+    </tr>
+  </thead>
+      <tbody>
+      {% for book in books %}
+        <tr>
+          <th scope="row">{{book.id}}</th>
+          <td>{{book.title}}</td>
+          <td>{{book.author}}</td>
+          <td>{{book.date_published}}</td>
+          <td>{{book.isbn_number}}</td>
+          <td>{{book.pages_number}}</td>
+          <td><a href="{{book.page_title_href}}">Link</a></td>
+          <td>{{book.language_published}}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+</table>
+{% endblock %}

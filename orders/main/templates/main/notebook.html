@@ -1,0 +1,29 @@
+
+{% if check_empty%}
+    <hr class="mt-0 mb-4">
+{%else%}
+    {% for item in ls.product_set.all%}
+        <div class="input-group mb-3">
+            <input type="text" value="{{item.text}}" class="form-control" readonly>
+            <input type="text" value="{{item.amount}}" class="form-control" readonly>
+        </div>
+    {% endfor %}
+    <hr class="mt-0 mb-4">
+
+{% endif %}
+
+<h2>Order a product</h2>
+<hr class="mt-0 mb-4">
+
+<form method="post" action="#">
+    {% csrf_token %}
+    <input type="text" name="orderName">
+    <input type="text" name="orderAmount">
+    <button type="submit" name="orderItem" value="orderItem">Order</button>
+</form>
+
+{% if not check_exists%}
+<p>There is no such product</p>
+{% elif not check_amount%}
+<p>Product not available in such amount</p>
+{% endif %}

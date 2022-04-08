@@ -1,0 +1,75 @@
+.sidenav {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #a8dadc;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a{
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #457b9d;
+    display: block;
+}
+.sidenav a:hover{
+    color: #1d3557;
+}
+
+.primary-form-contents {
+    padding-bottom: 0.5rem;
+}
+
+.primary-form-contents > input {
+    border: none;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: #a8dadc;
+}
+
+.primary-form-contents > input:focus,
+.primary-form-contents > input:hover {
+    outline: none;
+    border: none;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: #457b9d;
+}
+
+.custom-edit-btn {
+    border: none;
+    width: 16px;
+    height: 16px;
+    background: url('../assets/edit-ico.png') no-repeat;
+    padding: 2px 2px 2px 2px;
+    margin: 2px 2px 2px 2px;
+}
+
+.custom-submit-btn {
+    border: none;
+    width: 16px;
+    height: 16px;
+    background: url('../assets/tick.png') no-repeat;
+    padding: 2px 2px 2px 2px;
+    margin: 2px 2px 2px 2px;
+}
+
+.table-wrapper {
+  max-height: 20rem;
+  overflow: auto;
+  display:inline-block;
+}
+
+.search-filters-div > input {
+    margin: 10px;
+    border: none;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: #457b9d;
+    outline: none;
+}

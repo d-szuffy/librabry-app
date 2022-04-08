@@ -1,0 +1,99 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Create New List {% endblock %}
+
+{% block content %}
+<h3>Add books to the database</h3>
+<form method="post" action="#">
+    {% csrf_token %}
+    <div class="primary-form-contents form-group">
+        <input type="text" name="newTittle" placeholder="Title">
+    </div>
+    <div class="primary-form-contents form-group">
+        <input type="text" name="newAuthor" placeholder="Author">
+    </div>
+    <div class="primary-form-contents form-group">
+        <input type="text" name="newDate" placeholder="Publication Date">
+    </div>
+    <div class="primary-form-contents form-group">
+        <input type="text" name="newIsbn" placeholder="ISBN">
+    </div>
+    <div class="primary-form-contents form-group">
+        <input type="text" name="newPagesNo" placeholder="Number of Pages">
+    </div>
+    <div class="primary-form-contents form-group">
+        <input type="text" name="newLink" placeholder="Title Page Link">
+    </div>
+    <div class="primary-form-contents form-group">
+        <input type="text" name="newLanguage" placeholder="Language">
+    </div>
+    <div class="primary-form-contents">
+    <button class="btn btn-primary" type="submit" name="newItem" value="newItem">Add Item</button>
+    <button class="btn btn-primary" type="submit" name="clearList" value="clearList">Clear List</button>
+    </div>
+</form>
+{% if check_exists %}
+<hr class="mt-0 mb-4">
+<p>This book already exists in the database.</p>
+{% endif %}
+<div class="table-wrapper">
+    <table class="table table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+          <th scope="col">Author</th>
+          <th scope="col">Publication Date</th>
+          <th scope="col">ISBN number</th>
+          <th scope="col">Number of Pages</th>
+          <th scope="col">Title Page</th>
+          <th scope="col">Language</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for item in ls.book_set.all%}
+        {% if item.edit_status %}
+            <tr>
+                <form method="post">
+                  {% csrf_token %}
+                  <th scope="row">{{item.id}}</th>
+                  <td>
+                      <input type="text" name="editTitle{{item.id}}" value="{{item.title}}" placeholder="{{item.title}}">
+                  </td>
+                  <td>{{item.author}}</td>
+                  <td>{{item.date_published}}</td>
+                  <td>{{item.isbn_number}}</td>
+                  <td>{{item.pages_number}}</td>
+                  <td><a href="{{item.page_title_href}}">Link</a></td>
+                  <td>{{item.language_published}}</td>
+                  <td>
+                      <button class="custom-edit-btn" type="submit" name="editItem{{item.id}}" value="editItem{{item.id}}"></button>
+                      <button class="custom-submit-btn" type="submit" name="submitItemChanges{{item.id}}" value="submitItemChanges{{item.id}}"></button>
+                  </td>
+                </form>
+                </tr>
+        {% else %}
+            <tr>
+              <th scope="row">{{item.id}}</th>
+              <td>{{item.title}}</td>
+              <td>{{item.author}}</td>
+              <td>{{item.date_published}}</td>
+              <td>{{item.isbn_number}}</td>
+              <td>{{item.pages_number}}</td>
+              <td><a href="{{item.page_title_href}}">Link</a></td>
+              <td>{{item.language_published}}</td>
+              <td>
+                  <form method="post">
+                  {% csrf_token %}
+                  <button class="custom-edit-btn" type="submit" name="editItem{{item.id}}" value="editItem"></button>
+                  </form>
+              </td>
+            </tr>
+        {% endif%}
+      {% endfor %}
+
+      </tbody>
+    </table>
+</div>
+{% endblock %}
