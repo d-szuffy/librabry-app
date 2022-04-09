@@ -6,6 +6,7 @@ from .common.util.google_books_api import *
 
 # Create your views here.
 
+
 def home(response):
     return render(response, 'main/home.html', {})
 
