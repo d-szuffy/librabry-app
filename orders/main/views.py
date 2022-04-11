@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from .models import *
 from .filters import BookFilter
+from .forms import CreateNewBook
 
 from .common.util.google_books_api import *
 
@@ -12,23 +14,26 @@ def home(response):
 
 
 def create_new_records_in_db(response):
-
     ls = ListOfBooks.objects.get(id=1)
+    form = CreateNewBook()
 
     if response.method == "POST":
 
         if response.POST.get("newItem"):
+            form = CreateNewBook(response.POST)
+            if form.is_valid():
 
-            ttl = response.POST.get("newTittle")
-            author = response.POST.get("newAuthor")
-            date_pub = response.POST.get("newDate")
-            isbn = response.POST.get("newIsbn")
-            pages_no = response.POST.get("newPagesNo")
-            link = response.POST.get("newLink")
-            lang = response.POST.get("newLanguage")
+                ttl = form.cleaned_data["title"]
+                author = form.cleaned_data["author"]
+                date_pub = form.cleaned_data["date_published"]
+                isbn = form.cleaned_data["isbn_number"]
+                pages_no = form.cleaned_data["pages_number"]
+                link = form.cleaned_data["page_title_href"]
+                lang = form.cleaned_data["language_published"]
 
-            ls.book_set.create(title=ttl, author=author, date_published=date_pub, isbn_number=isbn,
-                               pages_number=pages_no, page_title_href=link, language_published=lang)
+                book = Book(listofbooks=ls, title=ttl, author=author, date_published=date_pub, isbn_number=isbn,
+                            pages_number=pages_no, page_title_href=link, language_published=lang)
+                book.save()
 
         elif response.POST.get("clearList"):
             for item in ls.book_set.all():
@@ -45,7 +50,8 @@ def create_new_records_in_db(response):
                 item.title = new_ttl
                 item.edit_status = False
                 item.save()
-    return render(response, 'main/create.html', {"ls": ls})
+
+    return render(response, 'main/create.html', {"form": form, "ls": ls})
 
 
 def view_all_books(response):
