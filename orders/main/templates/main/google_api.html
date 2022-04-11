@@ -3,14 +3,17 @@
 {% block title %}Create New List {% endblock %}
 
 {% block content %}
-<p class="h3">Import books to the database from GoogleAPI.</p>
-<p class="h4">Please provide the key word of books that you are looking for in the form below:</p>
-<form method="post" action="#">
-    {% csrf_token %}
-    <div class="primary-form-contents form-group">
-        <input type="text" name="keyWord" placeholder="Key word">
-    </div>
-    <button type="submit" class="btn btn-primary" name="importBooks" value="importBooks">Import</button>
+<div class="container grid" style="padding-bottom: 46%;">
 
-</form>
+    <p class="ff-sans-cond fs-700 text-white">Import books to the database from GoogleAPI.</p>
+    <p class="ff-sans-cond fs-600 text-white">Please provide the key word of books that you are looking for in the form below:</p>
+    <form method="post" action="#">
+        {% csrf_token %}
+        <div class="primary-form-contents form-group">
+            <input type="text" name="keyWord" placeholder="Key word">
+        </div>
+        <button type="submit" class="btn btn-light" name="importBooks" value="importBooks">Import</button>
+
+    </form>
+</div>
 {% endblock %}

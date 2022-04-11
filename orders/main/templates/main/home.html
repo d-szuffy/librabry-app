@@ -1,13 +1,11 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<h1>Welcome</h1>
+  <div class="container flex">
+      <div style="width: 20rem; margin-top: 10rem; padding-bottom: 50%;">
+        <h1 class="text-accent fs-500 ff-sans-cond uppercase letter-spacing-1">Welcome to our
+        <span class="fs-900 ff-serif text-white">Library</span></h1>
+      </div>
+  </div>
 
-<ul>
-  <li><p class="h6">Go to "Create" tab if you want to manualy add/edit/delete books present in the database.</p></li>
-  <li><p class="h6">Go to "Import" tab if you want to import books from GoogleAPI.</p></li>
-  <li><p class="h6">Go to "Books" tab if you want to see all the books which are currently in the database.</p></li>
-</ul>
-
-<h2></h2>
 {% endblock%}
