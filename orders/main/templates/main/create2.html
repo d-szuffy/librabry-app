@@ -6,27 +6,29 @@
 <div class="container flow text-white">
 
     <p class="fs-700 ff-sans-cond">Add books to the database</p>
-        <form class="grid primary-form-contents" method="post" action="#">
+        <form class="grid primary-form-contents" method="post">
             {% csrf_token %}
 
             <div class="flex primary-form-contents">
-                {{form.title}}
-                {{form.author}}
-                {{form.date_published}}
-                {{form.isbn_number}}
-                {{form.pages_number}}
-                {{form.page_title_href}}
-                {{form.language_published}}
+                <input type="text" name="newTittle" placeholder="Title">
+                <input type="text" name="newAuthor" placeholder="Author">
+                <input type="text" name="newDate" placeholder="Publication Date">
+                <input type="text" name="newIsbn" placeholder="ISBN">
+                <input type="text" name="newPagesNo" placeholder="Number of Pages">
+
+                <input type="text" name="newLink" placeholder="Title Page Link">
+                <input type="text" name="newLanguage" placeholder="Language">
             </div>
             <div class="primary-form-contents">
             <button class="btn btn-light" type="submit" name="newItem" value="newItem">Add Item</button>
+            <button class="btn btn-light" type="submit" name="clearList" value="clearList">Clear List</button>
             </div>
         </form>
-        <form class="grid primary-form-contents" method="post" action="#">
-            {% csrf_token %}
-            <button class="btn btn-light" type="submit" name="clearList" value="clearList">Clear List</button>
-        </form>
 
+    {% if check_exists %}
+    <hr class="mt-0 mb-4">
+    <p>This book already exists in the database.</p>
+    {% endif %}
     <div class="">
         <table class="table table-hover text-white ff-sans-normal">
           <thead class="">
