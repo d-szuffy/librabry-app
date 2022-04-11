@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '%8phljra2!@y508$ce83_royt6&1t5+54)+vs6&(j-+cx6b)3s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['http://library-reqruitment-app.herokuapp.com/',
                  'https://library-reqruitment-app.herokuapp.com/',
