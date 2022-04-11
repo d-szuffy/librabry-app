@@ -26,7 +26,11 @@ SECRET_KEY = '%8phljra2!@y508$ce83_royt6&1t5+54)+vs6&(j-+cx6b)3s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://the-yogify.herokuapp.com/',
+                 'https://the-yogify.herokuapp.com/',
+                 'the-yogify.herokuapp.com',
+                 'the-yogify.herokuapp.com/',
+                 '127.0.0.1']
 
 
 # Application definition
